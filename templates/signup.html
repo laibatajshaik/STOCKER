@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Stocker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">📈</div>
+                <span>Stocker</span>
+            </div>
+            
+            <div class="auth-buttons">
+                <a href="{{ url_for('index') }}" class="btn btn-secondary">Home</a>
+                <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="form-container">
+            <h2 class="text-center" style="color: #4CAF50; margin-bottom: 2rem;">Create Your Account</h2>
+            
+            {% if error %}
+                <div class="form-error">{{ error }}</div>
+            {% endif %}
+            
+            <form id="signupForm" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required minlength="3">
+                    <div id="usernameStatus" style="margin-top: 0.5rem; font-size: 0.9rem;"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" required minlength="8">
+                        <button type="button" class="password-toggle">👁️‍🗨️</button>
+                    </div>
+                    <div id="passwordStrength" style="margin-top: 0.5rem; font-size: 0.9rem;"></div>
+                    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #cccccc;">
+                        Password must be at least 8 characters with 1 special character and 1 number
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select id="role" name="role" required>
+                        <option value="">Select Role</option>
+                        <option value="Trader">Trader</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Create Account</button>
+            </form>
+            
+            <div class="text-center" style="margin-top: 2rem;">
+                <p style="color: #cccccc;">Already have an account? <a href="{{ url_for('login') }}" style="color: #4CAF50;">Login here</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

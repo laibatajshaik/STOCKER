@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin User Management - Stocker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">📈</div>
+                <span>Stocker</span>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="{{ url_for('admin_dashboard') }}" style="color: #ffffff; text-decoration: none;">Dashboard</a></li>
+                    <li><a href="{{ url_for('admin_portfolio') }}" style="color: #ffffff; text-decoration: none;">Portfolios</a></li>
+                    <li><a href="{{ url_for('admin_history') }}" style="color: #ffffff; text-decoration: none;">History</a></li>
+                    <li><a href="{{ url_for('admin_manage') }}" style="color: #ff9800; text-decoration: none;">Manage</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <div class="user-info">
+                    <div class="user-avatar" style="background-color: #ff9800;">{{ username[0].upper() }}</div>
+                    <span style="color: #ffffff;">{{ username }} (Admin)</span>
+                </div>
+                <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="admin-header">
+            <h1 class="admin-title">User Management</h1>
+            <div class="admin-subtitle">Manage user accounts and support messages</div>
+        </div>
+
+        <div class="content-section">
+            <h2>User Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">87</div>
+                    <div class="stat-label">Total Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">75</div>
+                    <div class="stat-label">Active Traders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Administrators</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">New This Week</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>User Accounts</h2>
+            <div style="overflow-x: auto;">
+                <table id="adminUsersTable" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Signup Date</th>
+                            <th>Last Login</th>
+                            <th>Portfolio Value</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>trader1</td>
+                            <td>trader1@example.com</td>
+                            <td class="text-success">Trader</td>
+                            <td>2024-01-10</td>
+                            <td>2024-01-25 14:30</td>
+                            <td>$78,043.75</td>
+                            <td class="text-success">Active</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>trader2</td>
+                            <td>trader2@example.com</td>
+                            <td class="text-success">Trader</td>
+                            <td>2024-01-12</td>
+                            <td>2024-01-25 16:45</td>
+                            <td>$63,931.25</td>
+                            <td class="text-success">Active</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>trader3</td>
+                            <td>trader3@example.com</td>
+                            <td class="text-success">Trader</td>
+                            <td>2024-01-15</td>
+                            <td>2024-01-25 09:20</td>
+                            <td>$76,301.25</td>
+                            <td class="text-success">Active</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>trader4</td>
+                            <td>trader4@example.com</td>
+                            <td class="text-success">Trader</td>
+                            <td>2024-01-18</td>
+                            <td>2024-01-25 11:15</td>
+                            <td>$23,135.00</td>
+                            <td class="text-success">Active</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>admin1</td>
+                            <td>admin1@example.com</td>
+                            <td class="text-warning">Admin</td>
+                            <td>2024-01-05</td>
+                            <td>2024-01-25 17:30</td>
+                            <td>$0.00</td>
+                            <td class="text-success">Active</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>trader5</td>
+                            <td>trader5@example.com</td>
+                            <td class="text-success">Trader</td>
+                            <td>2024-01-22</td>
+                            <td>2024-01-24 19:45</td>
+                            <td>$45,750.00</td>
+                            <td class="text-warning">Inactive</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>trader6</td>
+                            <td>trader6@example.com</td>
+                            <td class="text-success">Trader</td>
+                            <td>2024-01-23</td>
+                            <td>2024-01-25 12:30</td>
+                            <td>$12,450.00</td>
+                            <td class="text-success">Active</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>trader7</td>
+                            <td>trader7@example.com</td>
+                            <td class="text-success">Trader</td>
+                            <td>2024-01-24</td>
+                            <td>2024-01-25 08:15</td>
+                            <td>$8,925.00</td>
+                            <td class="text-success">Active</td>
+                            <td>
+                                <button class="btn btn-warning" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Support Messages</h2>
+            <div id="adminMessages">
+                <div class="message-item">
+                    <div class="message-header">
+                        <span class="message-user">trader1</span>
+                        <span class="message-time">2024-01-25 14:30:15</span>
+                    </div>
+                    <div class="message-content">
+                        Hi, I'm having trouble executing a sell order for AAPL. The system shows an error message when I try to sell 50 shares. Can you help?
+                    </div>
+                </div>
+                
+                <div class="message-item">
+                    <div class="message-header">
+                        <span class="message-user">trader3</span>
+                        <span class="message-time">2024-01-25 11:45:20</span>
+                    </div>
+                    <div class="message-content">
+                        Could you please explain how the average price calculation works in the portfolio? I bought GOOGL at different prices and I'm not sure how the average is calculated.
+                    </div>
+                </div>
+                
+                <div class="message-item">
+                    <div class="message-header">
+                        <span class="message-user">trader2</span>
+                        <span class="message-time">2024-01-25 09:15:45</span>
+                    </div>
+                    <div class="message-content">
+                        Is there a way to set up price alerts for stocks I'm watching? I'd like to be notified when TSLA reaches $800 or above.
+                    </div>
+                </div>
+                
+                <div class="message-item">
+                    <div class="message-header">
+                        <span class="message-user">trader4</span>
+                        <span class="message-time">2024-01-24 16:20:30</span>
+                    </div>
+                    <div class="message-content">
+                        I noticed that my portfolio value doesn't update immediately after a trade. How long does it typically take for the changes to reflect?
+                    </div>
+                </div>
+                
+                <div class="message-item">
+                    <div class="message-header">
+                        <span class="message-user">trader6</span>
+                        <span class="message-time">2024-01-24 13:55:10</span>
+                    </div>
+                    <div class="message-content">
+                        Great platform! Everything works smoothly. Just wanted to suggest adding more detailed charts for stock analysis. Keep up the good work!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>User Activity Analytics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">Login Activity</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>Today: 45 logins</li>
+                        <li>This Week: 287 logins</li>
+                        <li>This Month: 1,156 logins</li>
+                        <li>Peak Hour: 2-3 PM</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">User Engagement</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>Daily Active: 35 users</li>
+                        <li>Weekly Active: 68 users</li>
+                        <li>Monthly Active: 82 users</li>
+                        <li>Avg Session: 25 min</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #f44336; margin-bottom: 1rem;">Support Volume</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>Open Tickets: 5</li>
+                        <li>Resolved Today: 8</li>
+                        <li>Avg Response: 2 hours</li>
+                        <li>Satisfaction: 96%</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #2196F3; margin-bottom: 1rem;">Registration Trends</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>Today: 2 new users</li>
+                        <li>This Week: 12 new users</li>
+                        <li>This Month: 45 new users</li>
+                        <li>Growth Rate: +15%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Quick Actions</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">User Portfolios</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">View all user holdings</p>
+                    <a href="{{ url_for('admin_portfolio') }}" class="btn btn-warning">View Portfolios</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">Trade History</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">View all transactions</p>
+                    <a href="{{ url_for('admin_history') }}" class="btn btn-warning">View History</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">System Dashboard</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Overall system stats</p>
+                    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-warning">View Dashboard</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">System Settings</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Configure platform</p>
+                    <button class="btn btn-warning" onclick="alert('System settings coming soon!')">Settings</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

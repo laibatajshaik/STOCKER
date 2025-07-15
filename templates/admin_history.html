@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Trade History - Stocker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">📈</div>
+                <span>Stocker</span>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="{{ url_for('admin_dashboard') }}" style="color: #ffffff; text-decoration: none;">Dashboard</a></li>
+                    <li><a href="{{ url_for('admin_portfolio') }}" style="color: #ffffff; text-decoration: none;">Portfolios</a></li>
+                    <li><a href="{{ url_for('admin_history') }}" style="color: #ff9800; text-decoration: none;">History</a></li>
+                    <li><a href="{{ url_for('admin_manage') }}" style="color: #ffffff; text-decoration: none;">Manage</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <div class="user-info">
+                    <div class="user-avatar" style="background-color: #ff9800;">{{ username[0].upper() }}</div>
+                    <span style="color: #ffffff;">{{ username }} (Admin)</span>
+                </div>
+                <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="admin-header">
+            <h1 class="admin-title">Trade History</h1>
+            <div class="admin-subtitle">Complete record of all platform trades</div>
+        </div>
+
+        <div class="content-section">
+            <h2>Trading Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">1,247</div>
+                    <div class="stat-label">Total Trades</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">675</div>
+                    <div class="stat-label">Buy Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">572</div>
+                    <div class="stat-label">Sell Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">$4,875,250</div>
+                    <div class="stat-label">Total Volume</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>All Platform Trades</h2>
+            <div style="overflow-x: auto;">
+                <table id="adminHistoryTable" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Symbol</th>
+                            <th>Company</th>
+                            <th>Type</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total Amount</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>trader1</td>
+                            <td>AAPL</td>
+                            <td>Apple Inc.</td>
+                            <td class="text-success">BUY</td>
+                            <td>100</td>
+                            <td>$145.50</td>
+                            <td>$14,550.00</td>
+                            <td>2024-01-15 14:30:25</td>
+                        </tr>
+                        <tr>
+                            <td>trader2</td>
+                            <td>GOOGL</td>
+                            <td>Alphabet Inc.</td>
+                            <td class="text-success">BUY</td>
+                            <td>25</td>
+                            <td>$2,450.00</td>
+                            <td>$61,250.00</td>
+                            <td>2024-01-15 15:45:10</td>
+                        </tr>
+                        <tr>
+                            <td>trader3</td>
+                            <td>MSFT</td>
+                            <td>Microsoft Corporation</td>
+                            <td class="text-warning">SELL</td>
+                            <td>50</td>
+                            <td>$295.00</td>
+                            <td>$14,750.00</td>
+                            <td>2024-01-15 16:20:45</td>
+                        </tr>
+                        <tr>
+                            <td>trader1</td>
+                            <td>TSLA</td>
+                            <td>Tesla Inc.</td>
+                            <td class="text-success">BUY</td>
+                            <td>75</td>
+                            <td>$785.00</td>
+                            <td>$58,875.00</td>
+                            <td>2024-01-16 09:15:30</td>
+                        </tr>
+                        <tr>
+                            <td>trader4</td>
+                            <td>AMZN</td>
+                            <td>Amazon.com Inc.</td>
+                            <td class="text-success">BUY</td>
+                            <td>15</td>
+                            <td>$3,150.00</td>
+                            <td>$47,250.00</td>
+                            <td>2024-01-16 10:30:15</td>
+                        </tr>
+                        <tr>
+                            <td>trader2</td>
+                            <td>NVDA</td>
+                            <td>NVIDIA Corporation</td>
+                            <td class="text-warning">SELL</td>
+                            <td>30</td>
+                            <td>$875.00</td>
+                            <td>$26,250.00</td>
+                            <td>2024-01-16 11:45:20</td>
+                        </tr>
+                        <tr>
+                            <td>trader3</td>
+                            <td>META</td>
+                            <td>Meta Platforms Inc.</td>
+                            <td class="text-success">BUY</td>
+                            <td>40</td>
+                            <td>$315.00</td>
+                            <td>$12,600.00</td>
+                            <td>2024-01-16 13:20:50</td>
+                        </tr>
+                        <tr>
+                            <td>trader4</td>
+                            <td>NFLX</td>
+                            <td>Netflix Inc.</td>
+                            <td class="text-success">BUY</td>
+                            <td>20</td>
+                            <td>$485.00</td>
+                            <td>$9,700.00</td>
+                            <td>2024-01-16 14:55:35</td>
+                        </tr>
+                        <tr>
+                            <td>trader1</td>
+                            <td>AAPL</td>
+                            <td>Apple Inc.</td>
+                            <td class="text-warning">SELL</td>
+                            <td>25</td>
+                            <td>$150.25</td>
+                            <td>$3,756.25</td>
+                            <td>2024-01-17 09:10:15</td>
+                        </tr>
+                        <tr>
+                            <td>trader2</td>
+                            <td>GOOGL</td>
+                            <td>Alphabet Inc.</td>
+                            <td class="text-warning">SELL</td>
+                            <td>10</td>
+                            <td>$2,520.75</td>
+                            <td>$25,207.50</td>
+                            <td>2024-01-17 11:25:40</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Trading Analytics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">Most Active Traders</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>trader1: 245 trades</li>
+                        <li>trader2: 198 trades</li>
+                        <li>trader3: 176 trades</li>
+                        <li>trader4: 145 trades</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">Most Traded Stocks</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>AAPL: 325 trades</li>
+                        <li>GOOGL: 287 trades</li>
+                        <li>MSFT: 245 trades</li>
+                        <li>TSLA: 198 trades</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #f44336; margin-bottom: 1rem;">Trade Distribution</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>Morning: 35%</li>
+                        <li>Afternoon: 45%</li>
+                        <li>Evening: 20%</li>
+                        <li>After Hours: 5%</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #2196F3; margin-bottom: 1rem;">Volume Analysis</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>Avg Trade Size: $3,910</li>
+                        <li>Largest Trade: $61,250</li>
+                        <li>Smallest Trade: $425</li>
+                        <li>Daily Volume: $125,000</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Quick Actions</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">User Portfolios</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">View all user holdings</p>
+                    <a href="{{ url_for('admin_portfolio') }}" class="btn btn-warning">View Portfolios</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">User Management</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Manage user accounts</p>
+                    <a href="{{ url_for('admin_manage') }}" class="btn btn-warning">Manage Users</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">System Dashboard</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Overall system stats</p>
+                    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-warning">View Dashboard</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">Export Report</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Download trade history</p>
+                    <button class="btn btn-warning" onclick="alert('Export feature coming soon!')">Export</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

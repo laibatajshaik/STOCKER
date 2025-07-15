@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Stocker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">📈</div>
+                <span>Stocker</span>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="{{ url_for('admin_dashboard') }}" style="color: #ff9800; text-decoration: none;">Dashboard</a></li>
+                    <li><a href="{{ url_for('admin_portfolio') }}" style="color: #ffffff; text-decoration: none;">Portfolios</a></li>
+                    <li><a href="{{ url_for('admin_history') }}" style="color: #ffffff; text-decoration: none;">History</a></li>
+                    <li><a href="{{ url_for('admin_manage') }}" style="color: #ffffff; text-decoration: none;">Manage</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <div class="user-info">
+                    <div class="user-avatar" style="background-color: #ff9800;">{{ username[0].upper() }}</div>
+                    <span style="color: #ffffff;">{{ username }} (Admin)</span>
+                </div>
+                <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="admin-header">
+            <h1 class="admin-title">Admin Dashboard</h1>
+            <div class="admin-subtitle">System overview and statistics</div>
+        </div>
+
+        <div class="content-section">
+            <h2>System Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalTraders">0</div>
+                    <div class="stat-label">Total Traders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalTrades">0</div>
+                    <div class="stat-label">Total Trades</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalPortfolioValue">$0.00</div>
+                    <div class="stat-label">Total Portfolio Value</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="activeUsers">0</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>System Health</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value text-success">Online</div>
+                    <div class="stat-label">Platform Status</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value text-success">Connected</div>
+                    <div class="stat-label">Database Status</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value text-success">Active</div>
+                    <div class="stat-label">Price Updates</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value text-success">Operational</div>
+                    <div class="stat-label">Trade Engine</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Recent Activity</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 style="color: #d8ded9; margin-bottom: 1rem;">New Signups</h3>
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Today</div>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #dcdfdc; margin-bottom: 1rem;">Trades Executed</h3>
+                    <div class="stat-value">47</div>
+                    <div class="stat-label">Today</div>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #e9ece9; margin-bottom: 1rem;">Support Messages</h3>
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">System Uptime</h3>
+                    <div class="stat-value">99.9%</div>
+                    <div class="stat-label">This Month</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Quick Actions</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">View All Portfolios</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Monitor user holdings</p>
+                    <a href="{{ url_for('admin_portfolio') }}" class="btn btn-warning">View Portfolios</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">Trade History</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Review all transactions</p>
+                    <a href="{{ url_for('admin_history') }}" class="btn btn-warning">View History</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">Manage Users</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">User administration</p>
+                    <a href="{{ url_for('admin_manage') }}" class="btn btn-warning">Manage Users</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">System Settings</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Configure platform</p>
+                    <button class="btn btn-warning" onclick="alert('System settings coming soon!')">Settings</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

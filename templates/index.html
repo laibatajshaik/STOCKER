@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocker - Real-Time Stock Trading Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">📈</div>
+                <span>Stocker</span>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="active">Home</li>
+                    <li>About</li>
+                    <li>Services</li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <a href="{{ url_for('login') }}" class="btn btn-secondary">Login</a>
+                <a href="{{ url_for('signup') }}" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section id="home-section" class="content-section">
+            <h2>Welcome to Stocker</h2>
+            <p>Your premier destination for real-time stock trading. Experience the power of instant market data, seamless trading, and comprehensive portfolio management.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">20+</div>
+                    <div class="stat-label">Real-Time Stocks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">Market Updates</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">Instant</div>
+                    <div class="stat-label">Trade Execution</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">Secure</div>
+                    <div class="stat-label">Platform</div>
+                </div>
+            </div>
+            
+            <h3>Key Features</h3>
+            <ul style="color: #cccccc; margin-left: 2rem;">
+                <li>Real-time stock price updates every 10 seconds</li>
+                <li>Instant buy and sell order execution</li>
+                <li>Comprehensive portfolio tracking</li>
+                <li>Complete trade history and analytics</li>
+                <li>Professional admin dashboard</li>
+                <li>Email and SMS notifications</li>
+                <li>Responsive design for all devices</li>
+            </ul>
+        </section>
+
+        <section id="about-section" class="content-section hidden">
+            <h2>About Stocker</h2>
+            <p>Stocker is a cutting-edge stock trading platform designed for both novice and experienced traders. Our platform provides real-time market data, instant trade execution, and comprehensive portfolio management tools.</p>
+            
+            <h3>Our Mission</h3>
+            <p>To democratize stock trading by providing accessible, powerful, and secure trading tools that empower users to make informed investment decisions.</p>
+            
+            <h3>Technology Stack</h3>
+            <ul style="color: #cccccc; margin-left: 2rem;">
+                <li>Backend: Python Flask with robust authentication</li>
+                <li>Database: SQLite for local deployment, DynamoDB for AWS</li>
+                <li>Real-time Updates: WebSocket-based price streaming</li>
+                <li>Security: Session-based authentication with role management</li>
+                <li>Notifications: Email and AWS SNS integration</li>
+            </ul>
+            
+            <h3>Why Choose Stocker?</h3>
+            <ul style="color: #cccccc; margin-left: 2rem;">
+                <li>Lightning-fast trade execution</li>
+                <li>Real-time market data</li>
+                <li>Intuitive user interface</li>
+                <li>Comprehensive reporting</li>
+                <li>Professional-grade security</li>
+                <li>24/7 platform availability</li>
+            </ul>
+        </section>
+
+        <section id="services-section" class="content-section hidden">
+            <h2>Our Services</h2>
+            <p>Stocker offers a comprehensive suite of trading and portfolio management services designed to meet all your investment needs.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">Trading</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>Real-time stock prices</li>
+                        <li>Instant buy/sell orders</li>
+                        <li>Market analysis tools</li>
+                        <li>Trade confirmation</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">Portfolio</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>Holdings tracking</li>
+                        <li>Performance analytics</li>
+                        <li>Profit/loss calculations</li>
+                        <li>Asset allocation</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">History</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>Complete trade history</li>
+                        <li>Transaction details</li>
+                        <li>Historical performance</li>
+                        <li>Export capabilities</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">Support</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>24/7 help desk</li>
+                        <li>FAQ resources</li>
+                        <li>Live chat support</li>
+                        <li>Email notifications</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Additional Features</h3>
+            <ul style="color: #cccccc; margin-left: 2rem;">
+                <li>Admin dashboard for system management</li>
+                <li>User role management (Trader/Admin)</li>
+                <li>Email and SMS alert system</li>
+                <li>Responsive mobile design</li>
+                <li>Secure authentication system</li>
+                <li>Real-time notifications</li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

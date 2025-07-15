@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Stocker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">📈</div>
+                <span>Stocker</span>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="{{ url_for('dashboard') }}" style="color: #4CAF50; text-decoration: none;">Dashboard</a></li>
+                    <li><a href="{{ url_for('trade') }}" style="color: #ffffff; text-decoration: none;">Trade</a></li>
+                    <li><a href="{{ url_for('portfolio') }}" style="color: #ffffff; text-decoration: none;">Portfolio</a></li>
+                    <li><a href="{{ url_for('history') }}" style="color: #ffffff; text-decoration: none;">History</a></li>
+                    <li><a href="{{ url_for('help') }}" style="color: #ffffff; text-decoration: none;">Help</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <div class="user-info">
+                    <div class="user-avatar">{{ username[0].upper() }}</div>
+                    <span style="color: #ffffff;">{{ username }}</span>
+                </div>
+                <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Trading Dashboard</h1>
+            <div class="user-info">
+                <span style="color: #cccccc;">Welcome back, {{ username }}!</span>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Real-Time Stock Prices</h2>
+            <p style="color: #cccccc; margin-bottom: 1.5rem;">Prices update every 10 seconds</p>
+            
+            <div id="stockGrid" class="stock-grid">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Quick Actions</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">Trade</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Execute buy and sell orders</p>
+                    <a href="{{ url_for('trade') }}" class="btn btn-primary">Start Trading</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">Portfolio</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">View your holdings</p>
+                    <a href="{{ url_for('portfolio') }}" class="btn btn-primary">View Portfolio</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">History</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Review past trades</p>
+                    <a href="{{ url_for('history') }}" class="btn btn-primary">View History</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">Help</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Get support</p>
+                    <a href="{{ url_for('help') }}" class="btn btn-primary">Get Help</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

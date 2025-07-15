@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade History - Stocker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">📈</div>
+                <span>Stocker</span>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="{{ url_for('dashboard') }}" style="color: #ffffff; text-decoration: none;">Dashboard</a></li>
+                    <li><a href="{{ url_for('trade') }}" style="color: #ffffff; text-decoration: none;">Trade</a></li>
+                    <li><a href="{{ url_for('portfolio') }}" style="color: #ffffff; text-decoration: none;">Portfolio</a></li>
+                    <li><a href="{{ url_for('history') }}" style="color: #4CAF50; text-decoration: none;">History</a></li>
+                    <li><a href="{{ url_for('help') }}" style="color: #ffffff; text-decoration: none;">Help</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <div class="user-info">
+                    <div class="user-avatar">{{ username[0].upper() }}</div>
+                    <span style="color: #ffffff;">{{ username }}</span>
+                </div>
+                <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Trade History</h1>
+            <div class="user-info">
+                <span style="color: #cccccc;">Complete record of all your trades</span>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalTrades">0</div>
+                    <div class="stat-label">Total Trades</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalBuys">0</div>
+                    <div class="stat-label">Buy Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalSells">0</div>
+                    <div class="stat-label">Sell Orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalVolume">$0.00</div>
+                    <div class="stat-label">Total Volume</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Transaction History</h2>
+            <div style="overflow-x: auto;">
+                <table id="historyTable" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>Company</th>
+                            <th>Type</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total Amount</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="7" style="text-align: center; color: #cccccc;">
+                                <div class="loading-spinner"></div>
+                                <p>Loading trade history...</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Quick Actions</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">New Trade</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Execute buy and sell orders</p>
+                    <a href="{{ url_for('trade') }}" class="btn btn-primary">Start Trading</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">Portfolio</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">View current holdings</p>
+                    <a href="{{ url_for('portfolio') }}" class="btn btn-primary">View Portfolio</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">Dashboard</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Live market data</p>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-primary">View Dashboard</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">Support</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Get help and support</p>
+                    <a href="{{ url_for('help') }}" class="btn btn-primary">Get Help</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

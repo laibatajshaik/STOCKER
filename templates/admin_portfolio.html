@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portfolios - Stocker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">📈</div>
+                <span>Stocker</span>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="{{ url_for('admin_dashboard') }}" style="color: #ffffff; text-decoration: none;">Dashboard</a></li>
+                    <li><a href="{{ url_for('admin_portfolio') }}" style="color: #ff9800; text-decoration: none;">Portfolios</a></li>
+                    <li><a href="{{ url_for('admin_history') }}" style="color: #ffffff; text-decoration: none;">History</a></li>
+                    <li><a href="{{ url_for('admin_manage') }}" style="color: #ffffff; text-decoration: none;">Manage</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <div class="user-info">
+                    <div class="user-avatar" style="background-color: #ff9800;">{{ username[0].upper() }}</div>
+                    <span style="color: #ffffff;">{{ username }} (Admin)</span>
+                </div>
+                <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="admin-header">
+            <h1 class="admin-title">User Portfolios</h1>
+            <div class="admin-subtitle">Monitor all user holdings and portfolio performance</div>
+        </div>
+
+        <div class="content-section">
+            <h2>Portfolio Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">$2,450,000</div>
+                    <div class="stat-label">Total Platform Value</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">47</div>
+                    <div class="stat-label">Active Portfolios</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">AAPL</div>
+                    <div class="stat-label">Most Held Stock</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">+12.5%</div>
+                    <div class="stat-label">Average Performance</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>All User Holdings</h2>
+            <div style="overflow-x: auto;">
+                <table id="adminPortfolioTable" class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Symbol</th>
+                            <th>Company</th>
+                            <th>Quantity</th>
+                            <th>Avg Price</th>
+                            <th>Current Price</th>
+                            <th>Market Value</th>
+                            <th>Date Added</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>trader1</td>
+                            <td>AAPL</td>
+                            <td>Apple Inc.</td>
+                            <td>100</td>
+                            <td>$145.50</td>
+                            <td>$150.25</td>
+                            <td>$15,025.00</td>
+                            <td>2024-01-15</td>
+                        </tr>
+                        <tr>
+                            <td>trader1</td>
+                            <td>GOOGL</td>
+                            <td>Alphabet Inc.</td>
+                            <td>25</td>
+                            <td>$2,450.00</td>
+                            <td>$2,520.75</td>
+                            <td>$63,018.75</td>
+                            <td>2024-01-16</td>
+                        </tr>
+                        <tr>
+                            <td>trader2</td>
+                            <td>MSFT</td>
+                            <td>Microsoft Corporation</td>
+                            <td>75</td>
+                            <td>$295.00</td>
+                            <td>$305.50</td>
+                            <td>$22,912.50</td>
+                            <td>2024-01-17</td>
+                        </tr>
+                        <tr>
+                            <td>trader2</td>
+                            <td>TSLA</td>
+                            <td>Tesla Inc.</td>
+                            <td>50</td>
+                            <td>$785.00</td>
+                            <td>$820.25</td>
+                            <td>$41,012.50</td>
+                            <td>2024-01-18</td>
+                        </tr>
+                        <tr>
+                            <td>trader3</td>
+                            <td>AMZN</td>
+                            <td>Amazon.com Inc.</td>
+                            <td>15</td>
+                            <td>$3,150.00</td>
+                            <td>$3,245.75</td>
+                            <td>$48,686.25</td>
+                            <td>2024-01-19</td>
+                        </tr>
+                        <tr>
+                            <td>trader3</td>
+                            <td>NVDA</td>
+                            <td>NVIDIA Corporation</td>
+                            <td>30</td>
+                            <td>$875.00</td>
+                            <td>$920.50</td>
+                            <td>$27,615.00</td>
+                            <td>2024-01-20</td>
+                        </tr>
+                        <tr>
+                            <td>trader4</td>
+                            <td>META</td>
+                            <td>Meta Platforms Inc.</td>
+                            <td>40</td>
+                            <td>$315.00</td>
+                            <td>$325.75</td>
+                            <td>$13,030.00</td>
+                            <td>2024-01-21</td>
+                        </tr>
+                        <tr>
+                            <td>trader4</td>
+                            <td>NFLX</td>
+                            <td>Netflix Inc.</td>
+                            <td>20</td>
+                            <td>$485.00</td>
+                            <td>$505.25</td>
+                            <td>$10,105.00</td>
+                            <td>2024-01-22</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Portfolio Analytics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 style="color: #4CAF50; margin-bottom: 1rem;">Top Performers</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>trader1: +$4,750</li>
+                        <li>trader3: +$3,200</li>
+                        <li>trader2: +$2,100</li>
+                        <li>trader4: +$1,850</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">Risk Analysis</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>Low Risk: 15 portfolios</li>
+                        <li>Medium Risk: 25 portfolios</li>
+                        <li>High Risk: 7 portfolios</li>
+                        <li>Very High Risk: 0 portfolios</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #f44336; margin-bottom: 1rem;">Concentration Risk</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>AAPL: 35% of all holdings</li>
+                        <li>GOOGL: 25% of all holdings</li>
+                        <li>MSFT: 20% of all holdings</li>
+                        <li>Others: 20% of all holdings</li>
+                    </ul>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #2196F3; margin-bottom: 1rem;">Diversification</h3>
+                    <ul style="color: #cccccc; text-align: left; margin-left: 1rem;">
+                        <li>Technology: 65%</li>
+                        <li>Healthcare: 15%</li>
+                        <li>Finance: 12%</li>
+                        <li>Consumer: 8%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Quick Actions</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">Trade History</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">View all user transactions</p>
+                    <a href="{{ url_for('admin_history') }}" class="btn btn-warning">View History</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">User Management</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Manage user accounts</p>
+                    <a href="{{ url_for('admin_manage') }}" class="btn btn-warning">Manage Users</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">System Dashboard</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Overall system stats</p>
+                    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-warning">View Dashboard</a>
+                </div>
+                
+                <div class="stat-card">
+                    <h3 style="color: #ff9800; margin-bottom: 1rem;">Generate Report</h3>
+                    <p style="color: #cccccc; margin-bottom: 1rem;">Portfolio performance report</p>
+                    <button class="btn btn-warning" onclick="alert('Report generation coming soon!')">Generate</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

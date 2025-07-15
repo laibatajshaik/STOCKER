@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade - Stocker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">📈</div>
+                <span>Stocker</span>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="{{ url_for('dashboard') }}" style="color: #ffffff; text-decoration: none;">Dashboard</a></li>
+                    <li><a href="{{ url_for('trade') }}" style="color: #4CAF50; text-decoration: none;">Trade</a></li>
+                    <li><a href="{{ url_for('portfolio') }}" style="color: #ffffff; text-decoration: none;">Portfolio</a></li>
+                    <li><a href="{{ url_for('history') }}" style="color: #ffffff; text-decoration: none;">History</a></li>
+                    <li><a href="{{ url_for('help') }}" style="color: #ffffff; text-decoration: none;">Help</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <div class="user-info">
+                    <div class="user-avatar">{{ username[0].upper() }}</div>
+                    <span style="color: #ffffff;">{{ username }}</span>
+                </div>
+                <a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Trade Stocks</h1>
+            <div class="user-info">
+                <span style="color: #cccccc;">Execute buy and sell orders</span>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="trade-form">
+                <h3 style="color: #4CAF50; margin-bottom: 1.5rem;">Place Order</h3>
+                
+                <form id="tradeForm">
+                    <div class="trade-inputs">
+                        <div class="form-group">
+                            <label for="stock_symbol">Stock Symbol</label>
+                            <select id="stock_symbol" name="stock_symbol" required>
+                                <option value="">Select Stock</option>
+                                <option value="AAPL">AAPL - Apple Inc.</option>
+                                <option value="GOOGL">GOOGL - Alphabet Inc.</option>
+                                <option value="MSFT">MSFT - Microsoft Corporation</option>
+                                <option value="AMZN">AMZN - Amazon.com Inc.</option>
+                                <option value="TSLA">TSLA - Tesla Inc.</option>
+                                <option value="META">META - Meta Platforms Inc.</option>
+                                <option value="NVDA">NVDA - NVIDIA Corporation</option>
+                                <option value="NFLX">NFLX - Netflix Inc.</option>
+                                <option value="BABA">BABA - Alibaba Group</option>
+                                <option value="JPM">JPM - JPMorgan Chase</option>
+                                <option value="JNJ">JNJ - Johnson & Johnson</option>
+                                <option value="V">V - Visa Inc.</option>
+                                <option value="WMT">WMT - Walmart Inc.</option>
+                                <option value="PG">PG - Procter & Gamble</option>
+                                <option value="HD">HD - Home Depot Inc.</option>
+                                <option value="MA">MA - Mastercard Inc.</option>
+                                <option value="BAC">BAC - Bank of America</option>
+                                <option value="DIS">DIS - Walt Disney Company</option>
+                                <option value="ADBE">ADBE - Adobe Inc.</option>
+                                <option value="CRM">CRM - Salesforce Inc.</option>
+                                <option value="ORCL">ORCL - Oracle Corporation</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="trade_type">Trade Type</label>
+                            <select id="trade_type" name="trade_type" required>
+                                <option value="">Select Type</option>
+                                <option value="buy">Buy</option>
+                                <option value="sell">Sell</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" id="quantity" name="quantity" min="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="price">Price per Share</label>
+                            <input type="number" id="price" name="price" step="0.01" min="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <div class="trade-total">
+                        <h4>Total Amount</h4>
+                        <div id="totalAmount" class="total-amount">$0.00</div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                        <button type="submit" class="btn btn-primary" style="flex: 1;">Execute Trade</button>
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('tradeForm').reset(); updateTradeTotal();">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Live Stock Prices</h2>
+            <p style="color: #cccccc; margin-bottom: 1.5rem;">Current market prices (updates every 10 seconds)</p>
+            
+            <div id="stockGrid" class="stock-grid">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
