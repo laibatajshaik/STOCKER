@@ -41,7 +41,7 @@ def init_dynamodb():
     
     try:
         # Users table
-        users_table = dynamodb.create_table(
+        Users_table = dynamodb.create_table(
             TableName=f'{DYNAMODB_TABLE_PREFIX}users',
             KeySchema=[
                 {'AttributeName': 'username', 'KeyType': 'HASH'}
@@ -67,7 +67,7 @@ def init_dynamodb():
         )
         
         # Trade history table
-        trade_history_table = dynamodb.create_table(
+        Trade_history_table = dynamodb.create_table(
             TableName=f'{DYNAMODB_TABLE_PREFIX}trade_history',
             KeySchema=[
                 {'AttributeName': 'user_id', 'KeyType': 'HASH'},
@@ -81,7 +81,7 @@ def init_dynamodb():
         )
         
         # Help messages table
-        help_messages_table = dynamodb.create_table(
+        Help_messages_table = dynamodb.create_table(
             TableName=f'{DYNAMODB_TABLE_PREFIX}help_messages',
             KeySchema=[
                 {'AttributeName': 'message_id', 'KeyType': 'HASH'}
