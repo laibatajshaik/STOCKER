@@ -20,7 +20,7 @@ app.secret_key = secrets.token_hex(16)
 browser_opened = False
 # AWS Configuration (hardcoded for demo)
 AWS_REGION = 'us-east-1'
-SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:123456789012:stocker-alerts'
+SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:148761657981:stocker'
 DYNAMODB_TABLE_PREFIX = 'stocker_'
 
 # Initialize AWS clients
